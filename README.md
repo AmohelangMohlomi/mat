@@ -14,17 +14,32 @@
 6. *Facial Recognition*: Mat will use facial recognition technology to verify the user's identity and provide secure access to their account.
 
 ### Technical Requirements
+Programming Language: Python will be used as the primary programming language for developing Mat.
 
-1. *Programming Language*: Python will be used as the primary programming language for developing Mat.
-2. *Database Management System*: PostgreSQL will be used as the database management system for storing and managing user data.
+Database Management System: SQLite will be used as the database management system for storing and managing user data during development and prototyping.
 
-### Why PostgreSQL?
+#### Why SQLite?
+Simplicity: SQLite is a serverless, file-based database, which makes it easy to set up and use with minimal configuration.
 
-1. *Scalability*: PostgreSQL is a scalable database management system that can handle large amounts of data and traffic.
-2. *Reliability*: PostgreSQL is a reliable database management system that provides high uptime and minimal downtime.
-3. *Security*: PostgreSQL provides robust security features, including encryption and access control, to protect user data.
-4. *Flexibility*: PostgreSQL supports a wide range of data types and allows for flexible schema design.
+Lightweight: It’s ideal for small-scale applications and rapid prototyping like Mat’s initial version.
 
+Integrated with Python: SQLite is built into Python’s standard library via the sqlite3 module, so no external database installation is required.
+
+Portability: The entire database is stored in a single .db file, making it easy to move, back up, or bundle with the application.
+
+No Admin Overhead: No need to manage a separate server or user roles during development.
+
+#### Limitations to Keep in Mind (for future planning)
+Not designed for high concurrency — SQLite supports only one write operation at a time.
+
+Limited security features — no user authentication, encryption, or access control out of the box.
+
+Not ideal for cloud or multi-user production — consider migrating to PostgreSQL or another server-based DBMS later.
+
+#### Revised Development Roadmap (DB-specific addition)
+During Prototype Development, use SQLite to keep development fast and simple.
+
+Plan for a future migration to PostgreSQL (or another RDBMS) once Mat reaches production scale or needs advanced DB features like user permissions, security, or multi-user concurrency.
 ### Development Roadmap
 
 1. *Research and Planning*: Conduct research on voice recognition and facial recognition technologies, and plan the development of Mat.
