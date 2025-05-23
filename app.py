@@ -1,22 +1,37 @@
 import speech_recognition as sr
 
-# Initializing recognizer class (for recognizing the speech)
-r= sr.Recognizer()
+r = sr.Recognizer()
 
-# Reading Microphone source
-# Listening to the speech and storing it in the audio_text variable.
-with sr.Microphone() as source:
-    print("Talk")
-    audio_text = r.listen(source)
-    print("Time over,thanks")
+def get_input():
+    with sr.Microphone() as source:
+        print("Talk")
+        audio_text = r.listen(source)
+        print("Time over, thanks")
 
-    # recognize_() method will throw a request
-    # error if the API is unreachable,
-    # hence the exception handling
+        try:
+            # Recognize speech using Google
+            user_input = r.recognize_google(audio_text)
+            print("You said:", user_input)
+            return user_input.lower()  # Lowercase for easier matching
+        except sr.UnknownValueError:
+            print("Sorry, I did not get that.")
+            return None
+        except sr.RequestError:
+            print("Could not request results from Google Speech Recognition service.")
+            return None
 
-    try:
-        # Using google speech recognition
-        print("Text: "+ r.recognize_google(audio_text))
-    except:
-        print("Sorry, I did not get that")    
+def generate_response(user_input):
+    greetings = ["hi", "hello"]
+    if user_input in greetings:
+        return "Hi, I am Mat!"
+    else:
+        return "How can I help?"
 
+def main():
+    user_input = get_input()
+    if user_input:  # Only respond if we got valid input
+        response = generate_response(user_input)
+        print(response)
+
+if __name__ == "__main__":
+    main()
