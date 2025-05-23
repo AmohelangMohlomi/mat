@@ -1,6 +1,14 @@
+import pyttsx3
 import speech_recognition as sr
 
+# Initialize text-to-speech engine
+engine = pyttsx3.init()
+
 r = sr.Recognizer()
+
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
 
 def get_input():
     with sr.Microphone() as source:
@@ -9,27 +17,28 @@ def get_input():
         print("Time over, thanks")
 
         try:
-            # Recognize speech using Google
             user_input = r.recognize_google(audio_text)
             print("You said:", user_input)
-            return user_input.lower()  # Lowercase for easier matching
+            return user_input.lower()
         except sr.UnknownValueError:
             print("Sorry, I did not get that.")
             return None
         except sr.RequestError:
-            print("Could not request results from Google Speech Recognition service.")
+            print("Could not connect to Google Speech Recognition service.")
             return None
 
 def generate_response(user_input):
     greetings = ["hi", "hello"]
     if user_input in greetings:
-        return "Hi, I am Mat!"
+        response = "Hi, I am Mat!"
     else:
-        return "How can I help?"
+        response = "How can I help?"
+    speak(response)
+    return response
 
 def main():
     user_input = get_input()
-    if user_input:  # Only respond if we got valid input
+    if user_input:
         response = generate_response(user_input)
         print(response)
 
