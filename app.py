@@ -1,7 +1,22 @@
 import pyttsx3
 import speech_recognition as sr
+import sqlite3
 
 # Initialize text-to-speech engine
+def create_db():
+    # connect to SQLite database (or create it if it doesn't exist)
+    conn = sqlite3.connect('tasks.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS tasks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            task TEXT NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+
 engine = pyttsx3.init()
 
 r = sr.Recognizer()
