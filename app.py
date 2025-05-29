@@ -51,7 +51,8 @@ def generate_response(user_input, database='tasks.db'):
 
     if "add task" in user_input:
         # Extract the task after "add task"
-        task = user_input.split("add task", 1)[-1].strip()
+        task = user_input.split()
+        print(f"split input: {task} ")
         if task:
             cursor.execute("INSERT INTO tasks (task) VALUES (?)", (task,))
             conn.commit()
