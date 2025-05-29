@@ -33,7 +33,7 @@ def get_input():
 
         try:
             user_input = r.recognize_google(audio_text)
-            print("You said:", user_input)
+            print("You said:", user_input.split())
             return user_input.lower()
         except sr.UnknownValueError:
             print("Sorry, I did not get that.")
@@ -54,7 +54,7 @@ def generate_response(user_input, database='tasks.db'):
         task = user_input.split()
         print(f"split input: {task} ")
         if task:
-            cursor.execute("INSERT INTO tasks (task) VALUES (?)", (task,))
+            # cursor.execute("INSERT INTO tasks (task) VALUES (?)", (task,))
             conn.commit()
             response = "Task added, anything else?"
         else:
