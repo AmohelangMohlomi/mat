@@ -6,6 +6,7 @@ body{
 .greeting{
     text-align: center;
     font-family: Roboto;
+    
 }
 
 .search-bar{
@@ -18,5 +19,17 @@ body{
 }
 
 .center-search-bar{
+    text-align: center;
+}
+
+.grid{
+    display: grid;
+    padding: 20px;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    grid-template-columns: 250px 200px auto;
+}
+
+.grid-item1{
     text-align: center;
 }
