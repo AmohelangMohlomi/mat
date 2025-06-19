@@ -1,0 +1,22 @@
+body{
+    background: #04429a;
+}
+
+
+.greeting{
+    text-align: center;
+    font-family: Roboto;
+}
+
+.search-bar{
+    border-radius: 24px;
+    padding: 10px;
+    border: 1px solid;
+    width: 400px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.center-search-bar{
+    text-align: center;
+}
